@@ -1,5 +1,4 @@
-import { PrismaClient } from '@prisma/client'
-import { Router, Request, Response } from 'express';
+import { Router } from 'express';
 import TasksController from '../controllers/task.controller';
 
 const router = Router();
