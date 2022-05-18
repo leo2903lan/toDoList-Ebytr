@@ -6,7 +6,7 @@ const app = express();
 
 app.use(express.json());
 
-app.use('/task', router.listRouter);
+app.use('/task', router.taskRouter);
 app.use('/user', router.userRouter);
 
 
