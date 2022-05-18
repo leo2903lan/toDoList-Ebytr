@@ -5,20 +5,20 @@ const router = Router();
 const prisma = new PrismaClient();
 
 router.get('/', async (req: Request, res: Response) => {
-  const tasks = await prisma.list.findMany();
+  const tasks = await prisma.task.findMany();
   res.status(200).json(tasks);
 });
 
 router.get('/:id', async (req: Request, res: Response) => {
   const { id } = req.params;
-  const task = await prisma.list.findUnique({ where: { id: Number(id)}});
+  const task = await prisma.task.findUnique({ where: { id: Number(id)}});
   res.status(200).json(task);
 });
 
 router.post('/',   async (req: Request, res: Response) => {
   const { title, content, pubcompleted } = req.body;
 
-  await prisma.list.create({
+  await prisma.task.create({
     data: {
       title,
       content,
@@ -32,7 +32,7 @@ router.put('/', async  (req: Request, res: Response) => {
   const { title, content, pubcompleted } = req.body;
   const { id } = req.params;
 
-  await prisma.list.update({
+  await prisma.task.update({
     where: { id: Number(id) },
     data: {
       title,
@@ -44,13 +44,13 @@ router.put('/', async  (req: Request, res: Response) => {
 });
 
 router.delete('/', async (req: Request, res: Response) => {
-  await prisma.list.deleteMany();
+  await prisma.task.deleteMany();
   res.status(200).json({ message: 'All task Deleted ' });
 });
 router.delete('/:id', async (req: Request, res: Response) => {
   const { id } = req.params;
 
-  await prisma.list.delete({ where: { id:Number(id) }})
+  await prisma.task.delete({ where: { id:Number(id) }})
   res.status(200).json({ message: 'Task Deleted' });
 });
 
