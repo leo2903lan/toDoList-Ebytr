@@ -124,9 +124,9 @@ A variável `newtask` precisa ser um objeto com todas as informações da nova t
 
 ~~~JavaScript
 {
-  taskname: 'Marco',
-  email: 'marcosilva@trybe.com',
-  password: '1390193082165',
+  title: 'Manhã',
+  content: 'iniciar frontend',
+  pubcompleted: 'andamento'
 }
 ~~~
 
@@ -143,16 +143,9 @@ A variável `task` precisa ser um objeto com todas as informações da task, inc
 ~~~JavaScript
 {
   id: '2'
-  first_name: 'Marco',
-  last_name: 'Silva',
-  birthday: '11-05-1980',
-  image: 'http://placeimg.com/640/480/any',
-  city: 'Rio Preto',
-  email: 'marcosilva@trybe.com',
-  phone: '+1390193082165',
-  state: 'Minas Gerais',
-  address: 'Avenida Elias de Aguiar, 6311. Bloco B',
-  streetName: 'Rua Salazar'
+  title: 'Manhã',
+  content: 'iniciar frontend',
+  pubcompleted: 'concluido'
 }
 ~~~
 
@@ -167,7 +160,7 @@ axios.delete(`http://localhost:3005/task/delete/${id}`)
 O `id` precisa ser uma string e ser o `id` da task que você quer deletar. Exemplo:
 
 ~~~JavaScript
-'be9cfac4-4d72-386a-8912-eed311837403'
+1
 ~~~
 
 ---
