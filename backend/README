@@ -1,0 +1,173 @@
+# toDoList-Ebytr
+
+Neste repositório está criado backend de um projeto preparatório para desafio prático e entrevista de emprego, como parte do curso de desenvolvimento da Trybe.
+
+Aqui você vai encontrar os detalhes de como estruturar o desenvolvimento do seu projeto a partir desse repositório, utilizando um fork para colocar seus códigos.
+
+Instale as dependências e inicialize o projeto;
+
+- Instale as dependências:
+  - `npm install`
+- Inicalize a API do projeto:
+  - `npm run dev` (as requisições só vão funcionar depois de rodar esse comando, deixe esse comando rodando e abra um novo terminal caso precise usar o terminal, para parar esse comando é só usar ctrl + c)
+
+  ---
+
+## Banco de Dados MySQL
+
+- Criar o .env com a variável de ambiente a baixo, setar com seus dados do banco de dados:
+
+  - DATABASE_URL="mysql://USER:PASSWORD@HOST:PORT/DATABASE"
+
+- O Projeto faz uso do ORM Prisma, para utilizar o banco de dados localmente, rodar o comando:
+  - `npx prisma migrate dev --name init`
+
+---
+
+## API
+
+Este projeto possui uma API criada especificamente para ele, essa API irá cumprir todo o papel de pegar as requisições e consultar a base de dados e devolver os resultados para o front-end.
+
+Todo o código relacionado a API pode ser encontrado na pasta `/backend/src`
+
+---
+
+## Requisições
+
+Neste projeto será necessário criar funções para fazer as requisições necessárias.
+
+Para este projeto não será usado o `fetch()` para fazer as requisições, no lugar dele será usado o `axios()`, ele faz quase as mesmas coisas que o `fetch()` e tem o mesmo comportamento assíncrono, entretanto, o `axios()` nos permite mandar informações junto com a requisição, e para esse projeto mandar informação junto com a requisição é essencial, a forma como usar o `axios()` será explicada abaixo:
+
+~~~JavaScript
+// Importe o axios da biblioteca axios
+const axios = require('axios'); 
+
+// Chame a constante axios e passe o método HTTP que você deseja utilizar, como parâmetros passe o "endpoit" e o "objeto" que será utilizado pela API
+axios.get('endpoint', objeto)
+~~~
+
+Cada `endpoint` dessa aplicação possui seu próprio requisito de informações para funcionar, cada um deles será mostrado abaixo:
+
+---
+
+### Retornar todos as pessoas usuárias
+
+~~~JavaScript
+axios.get('http://localhost:3005/user')
+~~~
+
+---
+
+### Retornar uma pessoa usuária pelo id
+
+~~~JavaScript
+axios.get(`http://localhost:3005/user/${id}`)
+~~~
+
+O `id` precisa ser um number e ser o `id` da pessoa usuária que você quer retornar. Exemplo:
+
+~~~JavaScript
+2
+~~~
+
+---
+
+### Inserir uma nova pessoa usuária
+
+~~~JavaScript
+axios.post('http://localhost:3005/user', newUser)
+~~~
+
+A variável `newUser` precisa ser um objeto com todas as informações da nova pessoa usuária, tirando o `id`, todas as outras informações são obrigatórias, caso alguma fique em branco ou não seja passada, um erro será retornado. O `id` é gerado automáticamente quando uma nova pessoa usuária é inserida. Exemplo de objeto que deve ser passado:
+
+~~~JavaScript
+{
+  username: 'Marco',
+  email: 'marcosilva@trybe.com',
+  password: '1390193082165',
+}
+~~~
+
+---
+
+---
+
+### Retornar todos as tasks
+
+~~~JavaScript
+axios.get('http://localhost:3005/task')
+~~~
+
+---
+
+### Retornar uma task pelo id
+
+~~~JavaScript
+axios.get(`http://localhost:3005/task/${id}`)
+~~~
+
+O `id` precisa ser um number e ser o `id` da task que você quer retornar. Exemplo:
+
+~~~JavaScript
+2
+~~~
+
+---
+
+### Inserir uma nova task
+
+~~~JavaScript
+axios.post('http://localhost:3005/task', newtask)
+~~~
+
+A variável `newtask` precisa ser um objeto com todas as informações da nova task, tirando o `id`, todas as outras informações são obrigatórias, caso alguma fique em branco ou não seja passada, um erro será retornado. O `id` é gerado automáticamente quando uma nova task é inserida. Exemplo de objeto que deve ser passado:
+
+~~~JavaScript
+{
+  taskname: 'Marco',
+  email: 'marcosilva@trybe.com',
+  password: '1390193082165',
+}
+~~~
+
+---
+
+### Atualizando informações de uma task
+
+~~~JavaScript
+axios.put('http://localhost:3005/task/update', task)
+~~~
+
+A variável `task` precisa ser um objeto com todas as informações da task, incluindo o `id`, todas as informações são obrigatórias, caso alguma fique em branco ou não seja passada, um erro será retornado. Exemplo de objeto que deve ser passado:
+
+~~~JavaScript
+{
+  id: '2'
+  first_name: 'Marco',
+  last_name: 'Silva',
+  birthday: '11-05-1980',
+  image: 'http://placeimg.com/640/480/any',
+  city: 'Rio Preto',
+  email: 'marcosilva@trybe.com',
+  phone: '+1390193082165',
+  state: 'Minas Gerais',
+  address: 'Avenida Elias de Aguiar, 6311. Bloco B',
+  streetName: 'Rua Salazar'
+}
+~~~
+
+---
+
+### Deletado uma task
+
+~~~JavaScript
+axios.delete(`http://localhost:3005/task/delete/${id}`)
+~~~
+
+O `id` precisa ser uma string e ser o `id` da task que você quer deletar. Exemplo:
+
+~~~JavaScript
+'be9cfac4-4d72-386a-8912-eed311837403'
+~~~
+
+---
