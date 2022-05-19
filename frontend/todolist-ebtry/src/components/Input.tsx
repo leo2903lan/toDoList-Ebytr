@@ -1,15 +1,26 @@
 import React, { useState } from 'react'
+import Itask from '../interfaces/Itask';
+import Tasks from './Tasks';
 
 function Input() {
   const [taskValue , setTaskValue] = useState('');
   const [selectValue , setSelectValue] = useState('pendente');
+  const [arrayTasks, setArrayTasks] = useState<Itask[]>([]);
 
-  const addTask = () => { console.log('requisição na API para adicionar a TASK') }
+  const addTask = () => { 
+    const newTask = {
+      content: taskValue,
+      status: selectValue,
+    }
+    setArrayTasks([...arrayTasks, newTask])
+    console.log('requisição na API para adicionar a TASK') }
+  
   const deleteTask = () => { console.log('requisição na API para detelar a TASK selecionada') }
   const updateTask = () => { console.log('requisição na API para atualizar a TASK selecionada') }
 
   return (
-    <form>
+    <>
+      <form>
       <label>
         Task:
         <input type="text" name="task" value={ taskValue } onChange={ e => setTaskValue(e.target.value) } />
@@ -25,6 +36,17 @@ function Input() {
       <button type="button" value="DELETE" onClick={deleteTask}>DELETE</button>
       <button type="button" value="Atualizar" onClick={updateTask}>Atualizar</button>
     </form>
+
+    <table>
+      {arrayTasks.map((task, index) => (
+        <tr>
+          <input type="checkbox" name="" id="" />
+          <td key={index}>{task.content}--</td>
+          <td key={index}>--{task.status}</td>
+        </tr>
+      ))}
+    </table>
+    </>
   )
 }
 
