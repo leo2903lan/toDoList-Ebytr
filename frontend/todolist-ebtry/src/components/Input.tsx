@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import Itask from '../interfaces/Itask';
-import Tasks from './Tasks';
 
 function Input() {
   const [taskValue , setTaskValue] = useState('');
