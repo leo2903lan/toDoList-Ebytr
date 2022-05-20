@@ -23,7 +23,13 @@ function Input() {
       <form>
       <label>
         Task:
-        <input type="text" name="task" value={ taskValue } onChange={ e => setTaskValue(e.target.value) } />
+        <input
+          type="text"
+          name="task"
+          value={ taskValue }
+          onChange={ e => setTaskValue(e.target.value) }
+          placeholder="Detalhe sua tarefa aqui"
+        />
       </label>
       
       <select value={ selectValue } onChange={ e => setSelectValue(e.target.value) }>
