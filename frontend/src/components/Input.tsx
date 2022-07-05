@@ -65,9 +65,9 @@ function Input() {
           </label>
           
           <select className="form-control-lg" value={ selectValue } onChange={ e => setSelectValue(e.target.value) }>
-            <option value="pendente">Pendente</option>
-            <option value="andamento">Andamento</option>
-            <option value="pronto">Pronto</option>
+            <option data-testid="pendente" value="pendente">Pendente</option>
+            <option data-testid="andamento" value="andamento">Andamento</option>
+            <option data-testid="pronto" value="pronto">Pronto</option>
           </select>
 
           <button className="btn btn-primary" type="button" value="Add" onClick={addTask}>Add Task</button>
