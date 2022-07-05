@@ -16,20 +16,20 @@ export default class TasksController {
   };
 
   public create = async (req: Request, res: Response) => {
-    const { title, content, pubcompleted } = req.body;
+    const { title, content, status } = req.body;
   
     await this.prisma.task.create({
       data: {
         title,
         content,
-        pubcompleted,
+        status,
       }
     })
     res.status(201).json({ message: 'Task Created!' });
   };
 
   public update =  async  (req: Request, res: Response) => {
-    const { title, content, pubcompleted } = req.body;
+    const { title, content, status } = req.body;
     const { id } = req.params;
   
     await this.prisma.task.update({
@@ -37,7 +37,7 @@ export default class TasksController {
       data: {
         title,
         content,
-        pubcompleted,
+        status,
       }
     })
     res.status(200).json({ message: 'Task updated!' });

@@ -14,17 +14,8 @@ model Task {
   id           Int      @id @default(autoincrement())
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
-  title        String   @db.VarChar(50)
+  title        String?   @db.VarChar(50)
   content      String   @db.VarChar(255)
-  pubcompleted String   @db.VarChar(50)
-  author       User?     @relation(fields: [authorId], references: [id])
-  authorId     Int?
+  status String   @db.VarChar(50)
 }
 
-model User {
-  id       Int    @id @default(autoincrement())
-  email    String @unique
-  username String @db.VarChar(15)
-  password String @db.VarChar(15)
-  posts    Task[]
-}
