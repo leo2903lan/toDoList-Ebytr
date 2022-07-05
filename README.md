@@ -7,6 +7,14 @@ fazer um fork da raiz do projeto, com as pastas backend e frontend,
 
 em cada um dos diretórios rodar o npm install para instalar as dependencias do projeto;
 
+OBS: O MySQL já deverá estar rodando localmente ou em um conteiner com a porta mapeada para 3306
+
+o arquivo .env deve ser criado coma variável:
+
+SUBSTITUIR ONDE SINALIZADO!!!!
+
+DATABASE_URL="mysql://<usuário_do_BD>:<senha_do_BD>@localhost:3306/toDoEbtry"
+
 usar o comando na pasta backend:
 
 npx prisma migrate dev --name init
