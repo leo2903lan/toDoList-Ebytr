@@ -29,14 +29,12 @@ export default class TasksController {
   };
 
   public update =  async  (req: Request, res: Response) => {
-    const { title, content, status } = req.body;
+    const { status } = req.body;
     const { id } = req.params;
   
     await this.prisma.task.update({
       where: { id: Number(id) },
       data: {
-        title,
-        content,
         status,
       }
     })
