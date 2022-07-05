@@ -1,0 +1,31 @@
+.icon-button {
+  font-size: 32px;
+}
+.update {
+  color: green;
+}
+.update :hover {
+  color: greenligth;
+}
+
+.trash {
+  color: red;
+}
+
+.icon-button :hover {
+  cursor: pointer;
+}
+
+.ul-box{
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+}
+
+li {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  font-size: 32px;
+}

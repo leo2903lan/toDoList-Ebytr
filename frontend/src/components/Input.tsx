@@ -1,6 +1,8 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import Itask from '../interfaces/Itask';
+import { Icon } from '@iconify/react';
+import '../style/input.css';
 
 function Input() {
   const [taskValue , setTaskValue] = useState('');
@@ -71,14 +73,14 @@ function Input() {
       <button type="button" value="LIMPAR" onClick={cleanList}>LIMPAR LISTA</button>
     </form>
 
-    <ul>
+    <ul className="ul-box">
       {arrayTasks.map((task, index) => (
         <li key={index}>
-          <input type="checkbox" name="" id={task.id?.toString()} />
+          <Icon className="icon-button update" icon="fa:refresh" onClick={() => updateTask(task.id)} />
+          {/* <input type="checkbox" name="" id={task.id?.toString()} /> */}
           <span>{task.content}--</span>
           <span>--{task.status}</span>
-          <button type="button" value="Atualizar" onClick={() => updateTask(task.id)}>Atualizar</button>
-          <button type="button" onClick={() => deleteTask(task.id)}>DELETAR</button>
+          <Icon className="icon-button trash"icon="wpf:full-trash" onClick={() => deleteTask(task.id)} />
         </li>
       ))}
     </ul>

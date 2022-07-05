@@ -1,11 +1,11 @@
 .box-title {
+  align-items: center;
   background-color: aliceblue;
   display: flex;  
+  justify-content: center;
 }
 
 .tittle-collor{
-  align-items: center;
   background-color: aqua;
   color: blue;
-  margin: 0, auto, 0, auto;
 }
