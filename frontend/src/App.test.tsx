@@ -1,5 +1,5 @@
 import React from 'react';
-import { queryAllByRole, render, screen } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import App from './App';
 
 test('renderiza input text para as task, com as options de select "Pendente", "Andamento" ou "Pronto"', async () => {
