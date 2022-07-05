@@ -51,39 +51,44 @@ function Input() {
 
   return (
     <>
-      <form>
-      <label>
-        Task:
-        <input
-          type="text"
-          name="task"
-          value={ taskValue }
-          onChange={ e => setTaskValue(e.target.value) }
-          placeholder="Detalhe sua tarefa aqui"
-        />
-      </label>
+      <form className="box-form">
+          <label>
+            Task:
+            <input
+              className="form-control-lg"
+              type="text"
+              name="task"
+              value={ taskValue }
+              onChange={ e => setTaskValue(e.target.value) }
+              placeholder="Detalhe sua tarefa aqui"
+            />
+          </label>
+          
+          <select className="form-control-lg" value={ selectValue } onChange={ e => setSelectValue(e.target.value) }>
+            <option value="pendente">Pendente</option>
+            <option value="andamento">Andamento</option>
+            <option value="pronto">Pronto</option>
+          </select>
+
+          <button className="btn btn-primary" type="button" value="Add" onClick={addTask}>Add Task</button>
+          <Icon className="icon-arrow" icon="bi:file-arrow-up-fill" />
+          <Icon className="icon-arrow" icon="bi:file-arrow-down-fill" />
+        </form>
       
-      <select value={ selectValue } onChange={ e => setSelectValue(e.target.value) }>
-        <option value="pendente">Pendente</option>
-        <option value="andamento">Andamento</option>
-        <option value="pronto">Pronto</option>
-      </select>
 
-      <button type="button" value="Add" onClick={addTask}>Add Task</button>
-      <button type="button" value="LIMPAR" onClick={cleanList}>LIMPAR LISTA</button>
-    </form>
-
-    <ul className="ul-box">
-      {arrayTasks.map((task, index) => (
-        <li key={index}>
-          <Icon className="icon-button update" icon="fa:refresh" onClick={() => updateTask(task.id)} />
-          {/* <input type="checkbox" name="" id={task.id?.toString()} /> */}
-          <span>{task.content}--</span>
-          <span>--{task.status}</span>
-          <Icon className="icon-button trash"icon="wpf:full-trash" onClick={() => deleteTask(task.id)} />
-        </li>
-      ))}
-    </ul>
+      <ul className="ul-box">
+        {arrayTasks.map((task, index) => (
+          <li key={index}>
+            <Icon className="icon-button update" icon="fa:refresh" onClick={() => updateTask(task.id)} />
+            {/* <input type="checkbox" name="" id={task.id?.toString()} /> */}
+            <span>{task.content}--</span>
+            <span>--{task.status}</span>
+            <Icon className="icon-button trash"icon="wpf:full-trash" onClick={() => deleteTask(task.id)} />
+            <span>{task.createdAt?.toString()}</span>
+          </li>
+        ))}
+      <button className="btn btn-outline-danger" type="button" value="LIMPAR" onClick={cleanList}>LIMPAR LISTA</button>
+      </ul>
     </>
   )
 }

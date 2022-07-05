@@ -1,15 +1,31 @@
-.icon-button {
+.box-form {
+  display: flex;
+  /* flex-direction: column; */
+  gap: 2em;
+  align-items: center;
+  margin: 1rem;
+  /* width: 50%; */
+  justify-content: center;
+  font-size: larger;
+}
+
+
+.icon-button,
+.icon-arrow {
   font-size: 32px;
 }
 .update {
   color: green;
 }
 .update :hover {
-  color: greenligth;
+  color: limegreen;
 }
 
 .trash {
   color: red;
+}
+.trash :hover {
+  color: violet;
 }
 
 .icon-button :hover {
@@ -20,6 +36,8 @@
   display: flex;
   flex-direction: column;
   gap: 2em;
+  align-items: center;
+  margin-top: 1rem;
 }
 
 li {
