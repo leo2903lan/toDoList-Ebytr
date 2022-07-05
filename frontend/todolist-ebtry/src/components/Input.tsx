@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
 import Itask from '../interfaces/Itask';
 
 function Input() {
@@ -6,15 +7,38 @@ function Input() {
   const [selectValue , setSelectValue] = useState('pendente');
   const [arrayTasks, setArrayTasks] = useState<Itask[]>([]);
 
-  const addTask = () => { 
+  useEffect(() => {
+    axios.get("http://localhost:3005/task")
+    .then(response => setArrayTasks(response.data))
+    .catch(error => console.error(error));
+  }, [])
+  
+
+  const addTask = () => {
     const newTask = {
       content: taskValue,
       status: selectValue,
     }
+    axios.post("http://localhost:3005/task", newTask)
+    .then(response => console.log('response addTask>>>>',response));
     setArrayTasks([...arrayTasks, newTask])
-    console.log('requisição na API para adicionar a TASK') }
+    console.log('requisição na API para adicionar a TASK')
+  }
   
-  const deleteTask = () => { console.log('requisição na API para detelar a TASK selecionada') }
+  const cleanList = () => { 
+    axios.delete("http://localhost:3005/task");
+    setArrayTasks([]);
+    console.log('requisição na API para detelar toda lista')
+  };
+
+  const deleteTask = (e: any) => { 
+    axios.delete(`http://localhost:3005/task/${e}`);
+    axios.get("http://localhost:3005/task")
+    .then(response => setArrayTasks(response.data))
+    .catch(error => console.error(error));
+    console.log('requisição na API para detelar toda lista')
+  };
+
   const updateTask = () => { console.log('requisição na API para atualizar a TASK selecionada') }
 
   return (
@@ -32,25 +56,26 @@ function Input() {
       </label>
       
       <select value={ selectValue } onChange={ e => setSelectValue(e.target.value) }>
-        <option selected value="pendente">Pendente</option>
+        <option value="pendente">Pendente</option>
         <option value="andamento">Andamento</option>
         <option value="pronto">Pronto</option>
       </select>
 
       <button type="button" value="Add" onClick={addTask}>Add Task</button>
-      <button type="button" value="DELETE" onClick={deleteTask}>DELETE</button>
+      <button type="button" value="LIMPAR" onClick={cleanList}>LIMPAR LISTA</button>
       <button type="button" value="Atualizar" onClick={updateTask}>Atualizar</button>
     </form>
 
-    <table>
+    <ul>
       {arrayTasks.map((task, index) => (
-        <tr>
-          <input type="checkbox" name="" id="" />
-          <td key={index}>{task.content}--</td>
-          <td key={index}>--{task.status}</td>
-        </tr>
+        <li key={index}>
+          <input type="checkbox" name="" id={task.id?.toString()} />
+          <span>{task.content}--</span>
+          <span>--{task.status}</span>
+          <button type="button" onClick={() => deleteTask(task.id)}>DELETAR</button>
+        </li>
       ))}
-    </table>
+    </ul>
     </>
   )
 }
