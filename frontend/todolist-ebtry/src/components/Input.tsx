@@ -39,7 +39,13 @@ function Input() {
     console.log('requisição na API para detelar toda lista')
   };
 
-  const updateTask = () => { console.log('requisição na API para atualizar a TASK selecionada') }
+  const updateTask = (e: any) => {
+    const newStatus = {
+      status: selectValue,
+    };
+
+    axios.put(`http://localhost:3005/task/${e}`, newStatus)
+    console.log('requisição na API para atualizar a TASK selecionada') }
 
   return (
     <>
@@ -63,7 +69,6 @@ function Input() {
 
       <button type="button" value="Add" onClick={addTask}>Add Task</button>
       <button type="button" value="LIMPAR" onClick={cleanList}>LIMPAR LISTA</button>
-      <button type="button" value="Atualizar" onClick={updateTask}>Atualizar</button>
     </form>
 
     <ul>
@@ -72,6 +77,7 @@ function Input() {
           <input type="checkbox" name="" id={task.id?.toString()} />
           <span>{task.content}--</span>
           <span>--{task.status}</span>
+          <button type="button" value="Atualizar" onClick={() => updateTask(task.id)}>Atualizar</button>
           <button type="button" onClick={() => deleteTask(task.id)}>DELETAR</button>
         </li>
       ))}
